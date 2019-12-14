@@ -24,3 +24,12 @@ body {
   background-color: #218bb4;
   border-color: #329dc6;
 }
+
+.error-msg  {
+  display: block;
+  color: #dc3545;
+  padding-left: 0.5rem;
+  margin-top: .25rem;
+  font-size: 80%;
+  font-weight: 400;
+}

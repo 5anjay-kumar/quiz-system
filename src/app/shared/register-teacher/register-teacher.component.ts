@@ -1,3 +1,4 @@
+import { ValidatorService } from './../../core/services/validator.service';
 import { AppService } from "./../../core/services/app.service";
 import { TeacherService } from "./../../core/services/teacher.service";
 import { Component, OnInit } from "@angular/core";
@@ -31,7 +32,7 @@ export class RegisterTeacherComponent implements OnInit {
     this.teacherRegisterForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, ValidatorService.emailValidator]),
       password: new FormControl(null, [Validators.required])
     });
 
@@ -48,6 +49,11 @@ export class RegisterTeacherComponent implements OnInit {
   }
 
   registerTeacher() {
+    AppService.markAsDirty(this.teacherRegisterForm);
+    if(!this.teacherRegisterForm.valid) {
+      return;
+    }
+
     if (this.isNewRecord) {
       this.teacherService.addTeacher(this.teacherRegisterForm.value).subscribe(
         result => {
@@ -59,9 +65,15 @@ export class RegisterTeacherComponent implements OnInit {
         }
       );
     } else {
-      this.teacherService.addTeacher(this.teacherRegisterForm.value).subscribe(
+      const teacherData = this.teacherRegisterForm.value;
+
+      this.data.firstName = teacherData.firstName;
+      this.data.lastName = teacherData.lastName;
+      this.data.email = teacherData.email;
+
+      this.teacherService.updateTeacher(this.data).subscribe(
         result => {
-          console.log("Teacher Added!");
+          console.log("Teacher Updated!");
           this.ngModalRef.close(result);
         },
         error => {

@@ -38,9 +38,9 @@ export class TeacherService {
   }
 
   // Update employee
-  updateTeacher(id, data): Observable<any> {
+  updateTeacher(data): Observable<any> {
     return this.http
-      .put(environment.apiBaseUrl + "/admin/teachers/" + id, data, {
+      .put(environment.apiBaseUrl + "/admin/teachers/" + data._id, data, {
         headers: this.headers
       })
       .pipe();

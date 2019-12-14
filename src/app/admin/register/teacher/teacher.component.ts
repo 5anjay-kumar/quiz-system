@@ -43,6 +43,16 @@ export class TeacherComponent implements OnInit {
     );
   }
 
+  editTeacherPopup(teacher) {
+    const registerPopup = this.popupService.openPopup(
+      RegisterTeacherComponent,
+      teacher,
+      {
+        size: "lg"
+      }
+    );
+  }
+
   openAddTeacherSubjectPopup(teacher) {
     const teacherSubjectPopup = this.popupService.openPopup(
       AddTeacherSubjectComponent,
