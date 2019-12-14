@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">Register Teacher</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeWindow()">
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <i class="far fa-times-circle"></i>
+  </button>
+</div>
+<div class="modal-body ">
+  <div class="row">
+    <div class="col-sm-2"> </div>
+    <div class="col-sm-8">
+      <form [formGroup]="batchRegisterForm" (ngSubmit)="registerBatch()">
+        <div class="form-group">
+          <input type="text" name="department" formControlName="department" class="form-control border border-info rounded-pill"
+            placeholder="Department">
+        </div>
+        <div class="form-group">
+          <input type="text" name="batch-year" formControlName="batch_year" class="form-control border border-info rounded-pill"
+            placeholder="Batch Year">
+        </div>
+        <div class="form-group">
+          <input type="text" name="section" formControlName="section" class="form-control border border-info rounded-pill"
+            placeholder="Section">
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-info btn-lg float-right">Register</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-2"> </div>
+  </div>
+</div>

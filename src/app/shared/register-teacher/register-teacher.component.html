@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h4 class="modal-title">Register Teacher</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeWindow()">
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <i class="far fa-times-circle"></i>
+  </button>
+</div>
+<div class="modal-body ">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <form [formGroup]="teacherRegisterForm" (ngSubmit)="registerTeacher()">
+        <div class="form-group">
+          <input type="text" name="firstName" formControlName="firstName" class="form-control rounded-pill"
+            placeholder="First Name">
+          <small *ngIf="!teacherRegisterForm.get('firstName').valid && teacherRegisterForm.get('firstName').touched"
+            class="form-text text-muted pl-3">Please enter valid first name!</small>
+        </div>
+        <div class="form-group">
+          <input type="text" name="lastName" formControlName="lastName" class="form-control rounded-pill"
+            placeholder="Last Name">
+          <small *ngIf="!teacherRegisterForm.get('lastName').valid && teacherRegisterForm.get('lastName').touched"
+            class="form-text text-muted pl-3">Please enter valid last name!</small>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" formControlName="email" class="form-control rounded-pill"
+            placeholder="Email">
+          <!-- <small
+              *ngIf="!teacherRegisterForm.get('email').valid && teacherRegisterForm.get('email').touched"
+              class="form-text text-muted pl-3">
+              <small *ngIf="teacherRegisterForm.get('email').errors['emailIsForbidden']">Someone already has that email. Try another?</small>
+              <small *ngIf="teacherRegisterForm.get('email').errors['required']">This field is required!</small>
+            </small> -->
+        </div>
+        <div class="form-group" *ngIf="isNewRecord">
+          <input type="password" name="password" formControlName="password" class="form-control rounded-pill"
+            placeholder="Create Password">
+          <small *ngIf="!teacherRegisterForm.get('password').valid && teacherRegisterForm.get('password').touched"
+            class="form-text text-muted pl-3">Please enter valid password!</small>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-info btn-lg float-right">{{isNewRecord ? 'Register' : 'Update'}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

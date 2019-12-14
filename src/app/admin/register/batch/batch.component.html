@@ -1,0 +1,40 @@
+<h1>Batch</h1>
+<div class="col-sm-12 mb-3  d-flex justify-content-end">
+  <button type="button" class="btn btn-info btn-lg" (click)="openRegisterBatchPopup()">Register Batch</button>
+</div>
+
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-panel activeIds="ngb-panel-0">
+    <ng-template ngbPanelHeader let-opened="opened">
+      <div class="d-flex align-items-center justify-content-between">
+        <h5 class="m-0">Batch Details</h5>
+        <button ngbPanelToggle class="btn btn-outline-dark">{{ opened ? 'Close' : 'Open' }}</button>
+      </div>
+
+      <ng-template ngbPanelContent>
+        <table class="table table-hover mt-3">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Batch</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let batch of batches; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>
+                {{batch.department}}-{{batch.batch_year}}-{{batch.section}}
+              </td>
+              <td>
+                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" ngbTooltip="Edit"></i>
+                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left"
+                  ngbTooltip="Delete"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

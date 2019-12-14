@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Teacher Subject</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeWindow()">
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <i class="far fa-times-circle"></i>
+  </button>
+</div>
+<div class="modal-body ">
+  <div class="row">
+    <div class="col-sm-12">
+      <form [formGroup]="teacherSubjectForm" (ngSubmit)="addSubject()">
+        <div class="row align-items-center">
+          <div class="form-group col-md-4 offset-md-1">
+            <label for="inputState">Subject</label>
+            <select class="form-control" formControlName="subject">
+              <option> Select Subject </option>
+              <option name="subject" *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subject_title}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputState">Batch</label>
+            <select class="form-control" formControlName="batch">
+              <option> Select Batch </option>
+              <option name="batch" *ngFor="let batch of batches" [ngValue]="batch">
+                {{batch.department}}-{{batch.batch_year}}-{{batch.section}}</option>
+            </select>
+          </div>
+          <div class="col-md-3 mt-3">
+            <button class="btn btn-info" type="submit"> Add Subject </button>
+          </div>
+        </div>
+      </form>
+      <table class="table table-hover mt-3 ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let teacherSubject of teacherSubjects; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{teacherSubject.batch.department}}-{{teacherSubject.batch.batch_year}}-{{teacherSubject.batch.section}}
+            </td>
+            <td>{{ teacherSubject.subject.subject_title }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

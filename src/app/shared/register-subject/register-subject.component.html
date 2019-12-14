@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">Register Teacher</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeWindow()">
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <i class="far fa-times-circle"></i>
+  </button>
+</div>
+<div class="modal-body ">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <form [formGroup]="subjectRegisterForm" (ngSubmit)="registerSubject()">
+        <div class="form-group">
+          <input type="text" name="title" formControlName="subject_title" class="form-control rounded-pill"
+            placeholder="Subject Title">
+          <small *ngIf="!subjectRegisterForm.get('subject_title').valid && subjectRegisterForm.get('subject_title').touched"
+            class="form-text text-muted pl-3">Please enter valid subject!</small>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-info btn-lg float-right">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

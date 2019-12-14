@@ -1,0 +1,13 @@
+.left-side{
+  background-image: linear-gradient(to left, #0e5ed5, #0083e5, #00a1de, #00b9cc, #4ecebc);
+}
+
+.full-height {
+  height: 100vh;
+}
+
+hr.style13 {
+  border: 0;
+  height: 1.5px;
+  background-image: linear-gradient(to left, #0e5ed5, #0083e5, #00a1de, #00b9cc, #4ecebc);
+}
