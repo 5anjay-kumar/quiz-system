@@ -12,7 +12,6 @@ import { Component, OnInit } from "@angular/core";
 export class StudentComponent implements OnInit {
   students = [];
   batches = [];
-  studentBatches = [];
   data: any;
   constructor(
     private popupService: PopupService,
@@ -30,13 +29,6 @@ export class StudentComponent implements OnInit {
       console.log(batch);
       this.batches = batch;
     });
-
-    this.studentService
-      .getStudentBatches(this.data._id)
-      .subscribe((studentBatches: any) => {
-        console.log(studentBatches);
-        this.studentBatches = studentBatches;
-      });
   }
 
   openRegisterStudentPopup() {
@@ -51,10 +43,20 @@ export class StudentComponent implements OnInit {
     registerPopup.result.then(
       result => {
         // console.log(result);
-        this.studentBatches.push(result);
+        this.students.push(result);
         console.log("Student Results: " + result);
       },
       () => {}
+    );
+  }
+
+  editStudentPopup(student) {
+    const registerPopup = this.popupService.openPopup(
+      RegisterStudentComponent,
+      student,
+      {
+        size: "lg"
+      }
     );
   }
 }

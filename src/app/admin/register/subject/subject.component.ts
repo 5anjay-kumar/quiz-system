@@ -39,4 +39,14 @@ export class SubjectComponent implements OnInit {
       () => {}
     );
   }
+
+  editSubjectPopup(subject) {
+    const registerPopup = this.popupService.openPopup(
+      RegisterSubjectComponent,
+      subject,
+      {
+        size: "lg"
+      }
+    );
+  }
 }

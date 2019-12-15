@@ -1,13 +1,14 @@
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { environment } from './../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { environment } from "./../../../environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StudentService {
+  headers = new HttpHeaders().set("Content-Type", "application/json");
   constructor(private http: HttpClient) {}
   getStudent() {
     return this.http.get(environment.apiBaseUrl + "/admin/students").pipe(
@@ -19,16 +20,14 @@ export class StudentService {
   }
 
   addStudent(data): Observable<any> {
-    return this.http
-      .post(environment.apiBaseUrl + "/admin/students", data);
+    return this.http.post(environment.apiBaseUrl + "/admin/students", data);
   }
 
-  addStudentBatch(data): Observable<any> {
+  updateStudent(data): Observable<any> {
     return this.http
-      .post(environment.apiBaseUrl + "/admin/students/batches", data);
-  }
-
-  getStudentBatches(studentId: string) {
-    return this.http.get(environment.apiBaseUrl + "/admin/students/" + studentId + "/batches");
+      .put(environment.apiBaseUrl + "/admin/students/" + data._id, data, {
+        headers: this.headers
+      })
+      .pipe();
   }
 }

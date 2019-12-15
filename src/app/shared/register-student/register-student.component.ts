@@ -1,3 +1,4 @@
+import { AppService } from "./../../core/services/app.service";
 import { BatchService } from "./../../core/services/batch.service";
 import { StudentService } from "./../../core/services/student.service";
 import { Component, OnInit } from "@angular/core";
@@ -19,6 +20,7 @@ export class RegisterStudentComponent implements OnInit {
   studentRegisterForm: FormGroup;
   batches = [];
   data: any;
+  isNewRecord = true;
 
   constructor(
     private studentService: StudentService,
@@ -42,23 +44,56 @@ export class RegisterStudentComponent implements OnInit {
       password: new FormControl(null, Validators.required),
       batch: new FormControl(null, Validators.required)
     });
+
+    if (AppService.isNotUndefinedAndNull(this.data)) {
+      this.studentRegisterForm.removeControl("password");
+      this.isNewRecord = false;
+
+      this.studentRegisterForm.setValue({
+        firstName: this.data.firstName,
+        lastName: this.data.lastName,
+        email: this.data.email,
+        batch: this.data.batch
+      });
+    }
   }
 
-
   registerStudent() {
-    const student = this.studentRegisterForm.value;
+    AppService.markAsDirty(this.studentRegisterForm);
+    if (!this.studentRegisterForm.valid) {
+      return;
+    }
 
-    console.log("student Batches: " + student);
-    this.studentService.addStudent(student).subscribe(
-      result => {
-        // student._id = result._id;
-        console.log("Student Added!");
-        this.ngModalRef.close(result);
-      },
-      error => {
-        console.log("Error is: " + error);
-      }
-    );
+    if (this.isNewRecord) {
+      const student = this.studentRegisterForm.value;
+      this.studentService.addStudent(student).subscribe(
+        result => {
+          student._id = result._id;
+          console.log("Student Added!");
+          this.ngModalRef.close(result);
+        },
+        error => {
+          console.log("Error is: " + error);
+        }
+      );
+    } else {
+      const studentData = this.studentRegisterForm.value;
+
+      this.data.firstName = studentData.firstName;
+      this.data.lastName = studentData.lastName;
+      this.data.email = studentData.email;
+      this.data.batch = studentData.batch;
+
+      this.studentService.updateStudent(this.data).subscribe(
+        result => {
+          console.log("Student Updated!");
+          this.ngModalRef.close(result);
+        },
+        error => {
+          console.log("Student Error is: " + error);
+        }
+      );
+    }
   }
 
   closeWindow() {

@@ -1,4 +1,4 @@
-import { ValidatorService } from './../../core/services/validator.service';
+import { ValidatorService } from "./../../core/services/validator.service";
 import { AppService } from "./../../core/services/app.service";
 import { TeacherService } from "./../../core/services/teacher.service";
 import { Component, OnInit } from "@angular/core";
@@ -17,7 +17,6 @@ import {
 })
 export class RegisterTeacherComponent implements OnInit {
   ngModalRef: NgbModalRef;
-  forbiddenTeacherEmail = ["skmalhi1996@gmail.com", "test@gmail.com"];
   teacherRegisterForm: FormGroup;
   data: any;
   isNewRecord = true;
@@ -32,7 +31,10 @@ export class RegisterTeacherComponent implements OnInit {
     this.teacherRegisterForm = new FormGroup({
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, ValidatorService.emailValidator]),
+      email: new FormControl(null, [
+        Validators.required,
+        ValidatorService.emailValidator
+      ]),
       password: new FormControl(null, [Validators.required])
     });
 
@@ -50,7 +52,7 @@ export class RegisterTeacherComponent implements OnInit {
 
   registerTeacher() {
     AppService.markAsDirty(this.teacherRegisterForm);
-    if(!this.teacherRegisterForm.valid) {
+    if (!this.teacherRegisterForm.valid) {
       return;
     }
 
@@ -81,21 +83,6 @@ export class RegisterTeacherComponent implements OnInit {
         }
       );
     }
-  }
-
-  get myForm() {
-    return this.teacherRegisterForm.controls;
-  }
-
-  getTeacherById(id) {
-    this.teacherService.getTeacherById(id).subscribe(data => {
-      console.log("Single data: " + data);
-      this.teacherRegisterForm.setValue({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email
-      });
-    });
   }
 
   closeWindow() {

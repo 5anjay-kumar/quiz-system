@@ -29,9 +29,9 @@
                 {{student.firstName }} {{student.lastName}}
               </td>
               <td>{{ student.email }}</td>
-              <td>{{ student.batch.valueOf() }}</td>
+              <td>{{ student.batch }}</td>
               <td>
-                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" ngbTooltip="Edit"></i>
+                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" (click)="editStudentPopup(student)" ngbTooltip="Edit"></i>
                 <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left"
                   ngbTooltip="Delete"></i>
               </td>

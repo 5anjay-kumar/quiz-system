@@ -1,5 +1,5 @@
 import { environment } from "./../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, catchError } from "rxjs/operators";
 import { Observable } from "rxjs";
@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class BatchService {
+  headers = new HttpHeaders().set("Content-Type", "application/json");
   constructor(private http: HttpClient) {}
 
   getBatches() {
@@ -20,7 +21,14 @@ export class BatchService {
   }
 
   addBatch(data): Observable<any> {
+    return this.http.post(environment.apiBaseUrl + "/admin/batches", data);
+  }
+
+  updateBatch(data): Observable<any> {
     return this.http
-      .post(environment.apiBaseUrl + "/admin/batches", data);
+      .put(environment.apiBaseUrl + "/admin/batches/" + data._id, data, {
+        headers: this.headers
+      })
+      .pipe();
   }
 }

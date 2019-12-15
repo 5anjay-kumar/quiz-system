@@ -11,19 +11,26 @@
     <div class="col-sm-8">
       <form [formGroup]="batchRegisterForm" (ngSubmit)="registerBatch()">
         <div class="form-group">
-          <input type="text" name="department" formControlName="department" class="form-control border border-info rounded-pill"
-            placeholder="Department">
+          <input type="text" name="department" formControlName="department"
+            class="form-control border border-info rounded-pill" placeholder="Department">
+          <small *ngIf="batchRegisterForm.get('department')| isvalid: ['required']" class="error-msg">This field is
+            required!</small>
         </div>
         <div class="form-group">
-          <input type="text" name="batch-year" formControlName="batch_year" class="form-control border border-info rounded-pill"
-            placeholder="Batch Year">
+          <input type="text" name="batch-year" formControlName="batch_year"
+            class="form-control border border-info rounded-pill" placeholder="Batch Year">
+          <small *ngIf="batchRegisterForm.get('batch_year')| isvalid: ['required']" class="error-msg">This field is
+            required!</small>
         </div>
         <div class="form-group">
-          <input type="text" name="section" formControlName="section" class="form-control border border-info rounded-pill"
-            placeholder="Section">
+          <input type="text" name="section" formControlName="section"
+            class="form-control border border-info rounded-pill" placeholder="Section">
+          <small *ngIf="batchRegisterForm.get('section')| isvalid: ['required']" class="error-msg">This field is
+            required!</small>
         </div>
         <div class="d-flex justify-content-center">
-          <button type="submit" class="btn btn-outline-info btn-lg float-right">Register</button>
+          <button type="submit"
+            class="btn btn-outline-info btn-lg float-right">{{isNewRecord ? 'Register' : 'Update'}}</button>
         </div>
       </form>
     </div>

@@ -1,12 +1,7 @@
 <h1>Teachers</h1>
-<!-- <div class="col-sm-12 mb-3  d-flex justify-content-end">
-    <button type="button" class="btn btn-info btn-lg">Register Teacher</button>
-  </div> -->
-<!-- <app-register-teacher></app-register-teacher> -->
-
 <div class="col-sm-12 mb-3  d-flex justify-content-end">
-    <button type="button" class="btn btn-info btn-lg" (click)="openRegisterTeacherPopup()">Register Teacher</button>
-  </div>
+  <button type="button" class="btn btn-info btn-lg" (click)="openRegisterTeacherPopup()">Register Teacher</button>
+</div>
 
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel activeIds="ngb-panel-0">
@@ -34,8 +29,10 @@
               </td>
               <td>{{ teacher.email }}</td>
               <td>
-                <i class="btn btn-secondary" placement="left" (click)="openAddTeacherSubjectPopup(teacher)">Show Subject</i>
-                <i class="fas fa-edit btn btn-info rounded-circle ml-2" (click)="editTeacherPopup(teacher)" placement="left" ngbTooltip="Edit"></i>
+                <i class="btn btn-secondary" placement="left" (click)="openAddTeacherSubjectPopup(teacher)">Show
+                  Subject</i>
+                <i class="fas fa-edit btn btn-info rounded-circle ml-2" (click)="editTeacherPopup(teacher)"
+                  placement="left" ngbTooltip="Edit"></i>
                 <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left" ngbTooltip="Delete"></i>
               </td>
             </tr>

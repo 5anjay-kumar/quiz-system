@@ -27,7 +27,7 @@
                 {{batch.department}}-{{batch.batch_year}}-{{batch.section}}
               </td>
               <td>
-                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" ngbTooltip="Edit"></i>
+                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" (click)="editBatchPopup(batch)" ngbTooltip="Edit"></i>
                 <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left"
                   ngbTooltip="Delete"></i>
               </td>
