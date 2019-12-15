@@ -46,15 +46,21 @@ export class TeacherService {
       .pipe();
   }
 
-  getTeacherById(id): Observable<any> {
-    return this.http
-      .get(environment.apiBaseUrl + "/admin/teachers/" + id, {
+  deleteTeacher(data): Observable<any> {
+    return this.http.delete(
+      environment.apiBaseUrl + "/admin/teachers/" + data._id,
+      {
         headers: this.headers
-      })
-      .pipe(
-        map((result: Response) => {
-          return result || {};
-        })
-      );
+      }
+    );
+  }
+
+  deleteTeacherSubject(data): Observable<any> {
+    return this.http.delete(
+      environment.apiBaseUrl + "/admin/teachers/" + data._id,
+      {
+        headers: this.headers
+      }
+    );
   }
 }

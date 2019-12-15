@@ -1,6 +1,11 @@
 <h1>Student</h1>
-<div class="col-sm-12 mb-3  d-flex justify-content-end">
-  <button type="button" class="btn btn-info btn-lg" (click)="openRegisterStudentPopup()">Register Student</button>
+<div class="row mb-2">
+  <div class="col-sm-6 align-self-end">
+    <a [routerLink]="['/admin/batch']" routerLinkActive="router-link-active"> Go back to batch </a>
+  </div>
+  <div class="col-sm-6 text-right">
+    <button type="button" class="btn btn-info btn-lg" (click)="openRegisterStudentPopup()">Register Student</button>
+  </div>
 </div>
 
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
@@ -29,11 +34,12 @@
                 {{student.firstName }} {{student.lastName}}
               </td>
               <td>{{ student.email }}</td>
-              <td>{{ student.batch }}</td>
+              <td>{{ student.batch?.department }}-{{ student.batch?.batch_year }}-{{ student.batch?.section }}</td>
               <td>
-                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" (click)="editStudentPopup(student)" ngbTooltip="Edit"></i>
+                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" (click)="editStudentPopup(student)"
+                  ngbTooltip="Edit"></i>
                 <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left"
-                  ngbTooltip="Delete"></i>
+                  (click)="removeStudent(student, i)" ngbTooltip="Delete"></i>
               </td>
             </tr>
           </tbody>

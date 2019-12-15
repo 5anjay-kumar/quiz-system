@@ -31,4 +31,12 @@ export class BatchService {
       })
       .pipe();
   }
+
+  deleteBatch(data): Observable<any> {
+    return this.http
+      .delete(environment.apiBaseUrl + "/admin/batches/" + data.id, {
+        headers: this.headers
+      })
+      .pipe();
+  }
 }

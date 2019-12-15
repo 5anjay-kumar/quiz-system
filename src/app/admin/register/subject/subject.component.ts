@@ -1,5 +1,6 @@
+import { ConfirmationComponent } from "./../../../shared/confirmation/confirmation.component";
 import { RegisterSubjectComponent } from "./../../../shared/register-subject/register-subject.component";
-import { PopupService } from "./../../../shared/service/popup.service";
+import { PopupService } from "../../../core/services/popup.service";
 import { SubjectService } from "./../../../core/services/subject.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -47,6 +48,26 @@ export class SubjectComponent implements OnInit {
       {
         size: "lg"
       }
+    );
+  }
+
+  removeSubject(subject, index) {
+    const deletePopup = this.popupService.openPopup(
+      ConfirmationComponent,
+      subject,
+      {
+        size: "md"
+      }
+    );
+
+    deletePopup.result.then(
+      result => {
+        this.subjectService.deleteSubject(subject).subscribe(data => {
+          this.subjects.splice(index, 1);
+        });
+        console.log("Student Results: " + result);
+      },
+      () => {}
     );
   }
 }

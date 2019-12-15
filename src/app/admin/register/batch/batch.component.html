@@ -3,11 +3,11 @@
   <button type="button" class="btn btn-info btn-lg" (click)="openRegisterBatchPopup()">Register Batch</button>
 </div>
 
-<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+<ngb-accordion #acc="ngbAccordion" activeIds="custom-panel-1">
   <ngb-panel activeIds="ngb-panel-0">
     <ng-template ngbPanelHeader let-opened="opened">
       <div class="d-flex align-items-center justify-content-between">
-        <h5 class="m-0">Batch Details</h5>
+        <h5 class="m-0">Batches</h5>
         <button ngbPanelToggle class="btn btn-outline-dark">{{ opened ? 'Close' : 'Open' }}</button>
       </div>
 
@@ -27,8 +27,9 @@
                 {{batch.department}}-{{batch.batch_year}}-{{batch.section}}
               </td>
               <td>
-                <i class="fas fa-edit btn btn-info rounded-circle" placement="left" (click)="editBatchPopup(batch)" ngbTooltip="Edit"></i>
-                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left"
+                <a [routerLink]="[batch._id,'students']" routerLinkActive="router-link-active"  class="btn rounded-pill btn-outline-secondary  btn-sm"> Students </a>
+                <i class="fas fa-edit btn btn-info rounded-circle ml-2" placement="left" (click)="editBatchPopup(batch)" ngbTooltip="Edit"></i>
+                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" (click)="removeBatch(batch, i)" placement="left"
                   ngbTooltip="Delete"></i>
               </td>
             </tr>

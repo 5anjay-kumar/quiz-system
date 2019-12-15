@@ -1,4 +1,4 @@
-import { StudentComponent } from './register/student/student.component';
+import { StudentComponent } from './register/batch/student/student.component';
 import { AdminComponent } from "./admin.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -13,10 +13,6 @@ const appRoutes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: "student",
-        component: StudentComponent
-      },
-      {
         path: "teacher",
         component: TeacherComponent
       },
@@ -27,7 +23,11 @@ const appRoutes: Routes = [
       {
         path: "batch",
         component: BatchComponent
-      }
+      },
+      {
+        path: "batch/:id/students",
+        component: StudentComponent
+      },
     ]
   }
 ];

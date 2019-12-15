@@ -4,7 +4,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from "@angular/common";
 
 import { AdminComponent } from "./admin.component";
-import { StudentComponent } from "./register/student/student.component";
+import { StudentComponent } from "./register/batch/student/student.component";
 import { TeacherComponent } from "./register/teacher/teacher.component";
 import { BatchComponent } from "./register/batch/batch.component";
 import { SubjectComponent } from "./register/subject/subject.component";

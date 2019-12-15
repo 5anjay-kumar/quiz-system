@@ -29,11 +29,11 @@
               </td>
               <td>{{ teacher.email }}</td>
               <td>
-                <i class="btn btn-secondary" placement="left" (click)="openAddTeacherSubjectPopup(teacher)">Show
+                <i class="btn rounded-pill btn-outline-secondary  btn-sm" placement="left" (click)="openAddTeacherSubjectPopup(teacher)">Show
                   Subject</i>
                 <i class="fas fa-edit btn btn-info rounded-circle ml-2" (click)="editTeacherPopup(teacher)"
                   placement="left" ngbTooltip="Edit"></i>
-                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left" ngbTooltip="Delete"></i>
+                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" (click)="removeTeacher(teacher, i)" placement="left" ngbTooltip="Delete"></i>
               </td>
             </tr>
           </tbody>

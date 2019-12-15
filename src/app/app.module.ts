@@ -1,5 +1,5 @@
 import { CoreModule } from "./core/core.module";
-import { PopupService } from "./shared/service/popup.service";
+import { PopupService } from "./core/services/popup.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -17,6 +17,7 @@ import { RegisterBatchComponent } from "./shared/register-batch/register-batch.c
 import { AddTeacherSubjectComponent } from "./shared/add-teacher-subject/add-teacher-subject.component";
 import { RegisterSubjectComponent } from "./shared/register-subject/register-subject.component";
 import { RegisterStudentComponent } from "./shared/register-student/register-student.component";
+import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RegisterStudentComponent } from "./shared/register-student/register-stu
     RegisterBatchComponent,
     AddTeacherSubjectComponent,
     RegisterSubjectComponent,
-    RegisterStudentComponent
+    RegisterStudentComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { RegisterStudentComponent } from "./shared/register-student/register-stu
     RegisterBatchComponent,
     AddTeacherSubjectComponent,
     RegisterSubjectComponent,
-    RegisterStudentComponent
+    RegisterStudentComponent,
+    ConfirmationComponent
   ],
   providers: [PopupService],
   bootstrap: [AppComponent]

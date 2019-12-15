@@ -1,7 +1,8 @@
+import { ConfirmationComponent } from './../../../shared/confirmation/confirmation.component';
 import { AddTeacherSubjectComponent } from './../../../shared/add-teacher-subject/add-teacher-subject.component';
 import { Teacher } from "./../../../shared/models/teacher.model";
 import { TeacherService } from "../../../core/services/teacher.service";
-import { PopupService } from "./../../../shared/service/popup.service";
+import { PopupService } from "../../../core/services/popup.service";
 import { RegisterTeacherComponent } from "../../../shared/register-teacher/register-teacher.component";
 import { Component, OnInit } from "@angular/core";
 
@@ -50,6 +51,25 @@ export class TeacherComponent implements OnInit {
       {
         size: "lg"
       }
+    );
+  }
+
+  removeTeacher(teacher, index) {
+    const deletePopup = this.popupService.openPopup(
+      ConfirmationComponent,
+      teacher,
+      {
+        size: "md"
+      }
+    );
+
+    deletePopup.result.then(
+      result => {
+        this.teacherService.deleteTeacher(teacher).subscribe(data => {
+          this.teachers.splice(index, 1);
+        });
+      },
+      () => {}
     );
   }
 

@@ -35,16 +35,6 @@
           <small *ngIf="studentRegisterForm.get('password') | isvalid: ['required']"
             class="error-msg">This field is required!</small>
         </div>
-        <div class="from-group">
-          <label for="inputState">Batch</label>
-          <select class="form-control rounded-pill" formControlName="batch">
-            <option>Select Batch</option>
-            <option name="batch" *ngFor="let batch of batches" [ngValue]="batch">
-              {{batch.department}}-{{batch.batch_year}}-{{batch.section}}</option>
-          </select>
-          <small *ngIf="studentRegisterForm.get('batch') | isvalid: ['required']" class="error-msg">This
-            field is required!</small>
-        </div>
         <div class="d-flex justify-content-center">
           <button type="submit" class="btn btn-outline-info btn-lg float-right mt-2">{{isNewRecord ? 'Register' : 'Update'}}</button>
         </div>

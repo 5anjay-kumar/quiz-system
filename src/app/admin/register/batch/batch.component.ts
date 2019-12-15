@@ -1,5 +1,6 @@
+import { ConfirmationComponent } from './../../../shared/confirmation/confirmation.component';
 import { BatchService } from "./../../../core/services/batch.service";
-import { PopupService } from "./../../../shared/service/popup.service";
+import { PopupService } from "../../../core/services/popup.service";
 import { Component, OnInit } from "@angular/core";
 import { RegisterBatchComponent } from "src/app/shared/register-batch/register-batch.component";
 
@@ -49,4 +50,25 @@ export class BatchComponent implements OnInit {
       }
     );
   }
+
+  removeBatch(batch, index) {
+    const deletePopup = this.popupService.openPopup(
+      ConfirmationComponent,
+      batch,
+      {
+        size: "md"
+      }
+    );
+
+    deletePopup.result.then(
+      result => {
+        this.batchService.deleteBatch(batch).subscribe(data => {
+          this.batches.splice(index, 1);
+        });
+        console.log("Student Results: " + result);
+      },
+      () => {}
+    );
+  }
+
 }

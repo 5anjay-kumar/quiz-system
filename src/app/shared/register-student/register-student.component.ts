@@ -24,15 +24,10 @@ export class RegisterStudentComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-    private batchService: BatchService,
     public fb: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.batchService.getBatches().subscribe(batches => {
-      this.batches = batches;
-    });
-
     this.studentForm();
   }
 
@@ -41,19 +36,17 @@ export class RegisterStudentComponent implements OnInit {
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, Validators.required),
-      batch: new FormControl(null, Validators.required)
+      password: new FormControl(null, Validators.required)
     });
 
-    if (AppService.isNotUndefinedAndNull(this.data)) {
+    if (AppService.isNotUndefinedAndNull(this.data.student)) {
       this.studentRegisterForm.removeControl("password");
       this.isNewRecord = false;
 
       this.studentRegisterForm.setValue({
-        firstName: this.data.firstName,
-        lastName: this.data.lastName,
-        email: this.data.email,
-        batch: this.data.batch
+        firstName: this.data.student.firstName,
+        lastName: this.data.student.lastName,
+        email: this.data.student.email
       });
     }
   }
@@ -66,6 +59,7 @@ export class RegisterStudentComponent implements OnInit {
 
     if (this.isNewRecord) {
       const student = this.studentRegisterForm.value;
+      student.batch = this.data.batchId;
       this.studentService.addStudent(student).subscribe(
         result => {
           student._id = result._id;
@@ -79,12 +73,11 @@ export class RegisterStudentComponent implements OnInit {
     } else {
       const studentData = this.studentRegisterForm.value;
 
-      this.data.firstName = studentData.firstName;
-      this.data.lastName = studentData.lastName;
-      this.data.email = studentData.email;
-      this.data.batch = studentData.batch;
+      this.data.student.firstName = studentData.firstName;
+      this.data.student.lastName = studentData.lastName;
+      this.data.student.email = studentData.email;
 
-      this.studentService.updateStudent(this.data).subscribe(
+      this.studentService.updateStudent(this.data.student).subscribe(
         result => {
           console.log("Student Updated!");
           this.ngModalRef.close(result);

@@ -28,7 +28,7 @@
               </td>
               <td>
                 <i class="fas fa-edit btn btn-info rounded-circle" placement="left" (click)="editSubjectPopup(subject)" ngbTooltip="Edit"></i>
-                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left"
+                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" (click)="removeSubject(subject, i)" placement="left"
                   ngbTooltip="Delete"></i>
               </td>
             </tr>

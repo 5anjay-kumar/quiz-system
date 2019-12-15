@@ -1,3 +1,5 @@
+import { PopupService } from './../../core/services/popup.service';
+import { AppService } from "./../../core/services/app.service";
 import { Validators, FormBuilder } from "@angular/forms";
 import { FormControl } from "@angular/forms";
 import { FormGroup } from "@angular/forms";
@@ -15,15 +17,17 @@ import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 export class AddTeacherSubjectComponent implements OnInit {
   ngModalRef: NgbModalRef;
   data: any;
-  teacherSubjects = [];
   subjects = [];
   batches = [];
+  teacherSubjects = [];
+  isNewRecord = true;
   teacherSubjectForm: FormGroup;
 
   constructor(
     private subjectService: SubjectService,
     private batchService: BatchService,
     private teacherService: TeacherService,
+    private popupService: PopupService,
     public fb: FormBuilder
   ) {}
 
@@ -50,6 +54,15 @@ export class AddTeacherSubjectComponent implements OnInit {
       subject: new FormControl(null, Validators.required),
       batch: new FormControl(null, Validators.required)
     });
+
+    if (AppService.isNotUndefinedAndNull(this.data)) {
+      this.isNewRecord = false;
+
+      this.teacherSubjectForm.setValue({
+        subject: this.data.subject,
+        batch: this.data.batch
+      });
+    }
   }
 
   get selectedSubject() {
@@ -59,20 +72,46 @@ export class AddTeacherSubjectComponent implements OnInit {
   }
 
   addSubject() {
-    const selectedSubject = this.teacherSubjectForm.get("subject").value;
-    const selectedBatch = this.teacherSubjectForm.get("batch").value;
+    AppService.markAsDirty(this.teacherSubjectForm);
+    if (!this.teacherSubjectForm.valid) {
+      return;
+    }
 
-    const teacherSubject: any = {
-      teacher: this.data,
-      subject: selectedSubject,
-      batch: selectedBatch
-    };
+    if (this.isNewRecord) {
+      const selectedSubject = this.teacherSubjectForm.get("subject").value;
+      const selectedBatch = this.teacherSubjectForm.get("batch").value;
 
-    this.teacherService.addTeacherSubject(teacherSubject).subscribe(result => {
-      console.log(result);
-      teacherSubject._id = result._id;
-      this.teacherSubjects.push(teacherSubject);
-    });
+      const teacherSubject: any = {
+        teacher: this.data,
+        subject: selectedSubject,
+        batch: selectedBatch
+      };
+
+      this.teacherService
+        .addTeacherSubject(teacherSubject)
+        .subscribe(result => {
+          console.log(result);
+          teacherSubject._id = result._id;
+          this.teacherSubjects.push(teacherSubject);
+        });
+      }
+    // } else {
+    //   const selectedSubject = this.teacherSubjectForm.get("subject").value;
+    //   const selectedBatch = this.teacherSubjectForm.get("batch").value;
+
+    //   this.data.subject = selectedSubject;
+    //   this.data.batch = selectedBatch;
+
+    //   this.teacherService.updateTeacherSubject(this.data).subscribe(
+    //     result => {
+    //       console.log("Teacher Subject Updated!");
+    //       this.ngModalRef.close(result);
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    // }
   }
 
   closeWindow() {

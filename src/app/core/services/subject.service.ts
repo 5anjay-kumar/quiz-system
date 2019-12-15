@@ -33,4 +33,13 @@ export class SubjectService {
       }
     ).pipe();
   }
+
+  deleteSubject(data): Observable<any> {
+    return this.http
+      .delete(environment.apiBaseUrl + "/admin/subjects/" + data._id, {
+        headers: this.headers
+      })
+      .pipe();
+  }
+
 }
