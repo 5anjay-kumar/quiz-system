@@ -1,3 +1,4 @@
+import { QuestionsComponent } from './quiz/create-quiz/questions/questions.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 

@@ -14,7 +14,6 @@ export class BatchService {
   getBatches() {
     return this.http.get(environment.apiBaseUrl + "/admin/batches").pipe(
       map((data: any) => {
-        // console.log(response);
         return data;
       })
     );
@@ -27,14 +26,6 @@ export class BatchService {
   updateBatch(data): Observable<any> {
     return this.http
       .put(environment.apiBaseUrl + "/admin/batches/" + data._id, data, {
-        headers: this.headers
-      })
-      .pipe();
-  }
-
-  deleteBatch(data): Observable<any> {
-    return this.http
-      .delete(environment.apiBaseUrl + "/admin/batches/" + data.id, {
         headers: this.headers
       })
       .pipe();

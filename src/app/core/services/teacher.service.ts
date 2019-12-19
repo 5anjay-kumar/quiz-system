@@ -45,22 +45,4 @@ export class TeacherService {
       })
       .pipe();
   }
-
-  deleteTeacher(data): Observable<any> {
-    return this.http.delete(
-      environment.apiBaseUrl + "/admin/teachers/" + data._id,
-      {
-        headers: this.headers
-      }
-    );
-  }
-
-  deleteTeacherSubject(data): Observable<any> {
-    return this.http.delete(
-      environment.apiBaseUrl + "/admin/teachers/" + data._id,
-      {
-        headers: this.headers
-      }
-    );
-  }
 }

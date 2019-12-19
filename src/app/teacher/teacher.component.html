@@ -1,2 +1,36 @@
-<h1>Teacher</h1>
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Teacher</h1>
+      <div class="d-flex justify-content-end">
+        <a class="btn btn-outline-secondary" routerLink="create-quiz" routerLinkActive="router-link-active" >Create Quiz</a>
+      </div>
+      <table class="table table-hover mt-3 ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Quiz Title</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Full Stack</td>
+            <td>Show</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Physics</td>
+            <td>Show</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

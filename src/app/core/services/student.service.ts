@@ -13,7 +13,6 @@ export class StudentService {
   getStudent() {
     return this.http.get(environment.apiBaseUrl + "/admin/students").pipe(
       map((data: any) => {
-        // console.log(response);
         return data;
       })
     );

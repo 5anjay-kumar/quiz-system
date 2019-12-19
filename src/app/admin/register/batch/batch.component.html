@@ -28,9 +28,7 @@
               </td>
               <td>
                 <a [routerLink]="[batch._id,'students']" routerLinkActive="router-link-active"  class="btn rounded-pill btn-outline-secondary  btn-sm"> Students </a>
-                <i class="fas fa-edit btn btn-info rounded-circle ml-2" placement="left" (click)="editBatchPopup(batch)" ngbTooltip="Edit"></i>
-                <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" (click)="removeBatch(batch, i)" placement="left"
-                  ngbTooltip="Delete"></i>
+                <i class="fas fa-edit btn btn-info rounded-circle ml-2" placement="right" (click)="editBatchPopup(batch)" ngbTooltip="Edit"></i>
               </td>
             </tr>
           </tbody>

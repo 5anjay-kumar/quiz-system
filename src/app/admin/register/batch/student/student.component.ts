@@ -38,7 +38,7 @@ export class StudentComponent implements OnInit {
   openRegisterStudentPopup() {
     const registerPopup = this.popupService.openPopup(
       RegisterStudentComponent,
-      {batchId: this.batchId},
+      { batchId: this.batchId },
       {
         size: "lg"
       }
@@ -53,13 +53,9 @@ export class StudentComponent implements OnInit {
   }
 
   editStudentPopup(student) {
-    const registerPopup = this.popupService.openPopup(
-      RegisterStudentComponent,
-      student,
-      {
-        size: "lg"
-      }
-    );
+    this.popupService.openPopup(RegisterStudentComponent, student, {
+      size: "lg"
+    });
   }
 
   removeStudent(student, index) {

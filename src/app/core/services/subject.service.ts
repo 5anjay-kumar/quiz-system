@@ -14,7 +14,6 @@ export class SubjectService {
   getSubjects() {
     return this.http.get(environment.apiBaseUrl + "/admin/subjects").pipe(
       map((data: any) => {
-        // console.log(response);
         return data;
       })
     );
@@ -25,21 +24,10 @@ export class SubjectService {
   }
 
   updateSubject(data): Observable<any> {
-    return this.http.put(
-      environment.apiBaseUrl + "/admin/subjects/" + data._id,
-      data,
-      {
-        headers: this.headers
-      }
-    ).pipe();
-  }
-
-  deleteSubject(data): Observable<any> {
     return this.http
-      .delete(environment.apiBaseUrl + "/admin/subjects/" + data._id, {
+      .put(environment.apiBaseUrl + "/admin/subjects/" + data._id, data, {
         headers: this.headers
       })
       .pipe();
   }
-
 }

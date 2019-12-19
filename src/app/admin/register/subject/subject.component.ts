@@ -1,4 +1,3 @@
-import { ConfirmationComponent } from "./../../../shared/confirmation/confirmation.component";
 import { RegisterSubjectComponent } from "./../../../shared/register-subject/register-subject.component";
 import { PopupService } from "../../../core/services/popup.service";
 import { SubjectService } from "./../../../core/services/subject.service";
@@ -34,7 +33,6 @@ export class SubjectComponent implements OnInit {
 
     subjectPopup.result.then(
       result => {
-        // console.log(result);
         this.subjects.push(result);
       },
       () => {}
@@ -42,32 +40,8 @@ export class SubjectComponent implements OnInit {
   }
 
   editSubjectPopup(subject) {
-    const registerPopup = this.popupService.openPopup(
-      RegisterSubjectComponent,
-      subject,
-      {
-        size: "lg"
-      }
-    );
-  }
-
-  removeSubject(subject, index) {
-    const deletePopup = this.popupService.openPopup(
-      ConfirmationComponent,
-      subject,
-      {
-        size: "md"
-      }
-    );
-
-    deletePopup.result.then(
-      result => {
-        this.subjectService.deleteSubject(subject).subscribe(data => {
-          this.subjects.splice(index, 1);
-        });
-        console.log("Student Results: " + result);
-      },
-      () => {}
-    );
+    this.popupService.openPopup(RegisterSubjectComponent, subject, {
+      size: "lg"
+    });
   }
 }
