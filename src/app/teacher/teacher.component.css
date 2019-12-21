@@ -1,0 +1,23 @@
+.border-left-primary {
+  border-left: .25rem solid  #329dc6!important;
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.align-items-center {
+  align-items: center!important;
+}
+.text-xs {
+  font-size: .7rem;
+}
+.text-gray-800 {
+  color: #5a5c69!important;
+}
+.text-gray-300 {
+  color: #dddfeb!important;
+}
+
+.text-head-primary{
+  color:  #329dc6;
+}

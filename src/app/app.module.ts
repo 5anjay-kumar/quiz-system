@@ -18,6 +18,7 @@ import { AddTeacherSubjectComponent } from "./shared/add-teacher-subject/add-tea
 import { RegisterSubjectComponent } from "./shared/register-subject/register-subject.component";
 import { RegisterStudentComponent } from "./shared/register-student/register-student.component";
 import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
+import { QuestionComponent } from './shared/question/question.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ConfirmationComponent } from './shared/confirmation/confirmation.compon
     AddTeacherSubjectComponent,
     RegisterSubjectComponent,
     RegisterStudentComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { ConfirmationComponent } from './shared/confirmation/confirmation.compon
     AddTeacherSubjectComponent,
     RegisterSubjectComponent,
     RegisterStudentComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    QuestionComponent
   ],
   providers: [PopupService],
   bootstrap: [AppComponent]

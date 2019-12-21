@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <h4 class="modal-title">Question</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeWindow()">
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <i class="far fa-times-circle"></i>
+  </button>
+</div>
+<div class="modal-body ">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <form [formGroup]="questionForm">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" name="question" formControlName="question"></textarea>
+          <!-- <small *ngIf="teacherRegisterForm.get('firstName') | isvalid: ['required']"
+            class="error-msg">This field is required!</small> -->
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="questionType">
+            <label ngbButtonLabel class="btn-outline-secondary">
+              <input ngbButton type="radio" value="true"> Single Answer
+            </label>
+            <label ngbButtonLabel class="btn-outline-secondary">
+              <input ngbButton type="radio" value="false"> Multiple Answers
+            </label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+          <button type="submit" class="btn btn-outline-info float-right" (click)="addQuestion()">Add Question</button>
+        </div>
+      </form>
+      <hr>
+      <h4 class="text-center">Answer</h4>
+      <!-- ------------------------------------------------ -->
+      <div *ngIf="questionType === 'true' || questionType === 'false'">
+      <form [formGroup]="answerForm">
+        <div class="row mt-4">
+          <div class=" input-group">
+            <input type="text" class="form-control" name="options" placeholder="Option" formControlName="options">
+            <div class="btn-toggle ml-1" ngbRadioGroup name="isChecked" formControlName="isChecked">
+              <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="checkbox" value="false">
+              </label>
+            </div>
+            <button type="submit" class="btn btn-outline-info ml-2" (click)="addAnswer()">Add Answer</button>
+          </div>
+        </div>
+      </form>
+      <!-- <hr>
+      <div *ngFor="let answer of answers; index as i">
+        <p>{{i + 1}}:  {{answer.answer}} {{answer.isChecked}}</p>
+      </div> -->
+    </div>
+    </div>
+  </div>
+</div>

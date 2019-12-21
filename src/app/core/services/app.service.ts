@@ -1,3 +1,4 @@
+import { LoginUser } from './../model/login-user';
 import { FormControl, FormGroup } from "@angular/forms";
 import * as $_ from "jquery";
 import * as _ from "underscore";
@@ -106,5 +107,15 @@ export class AppService {
   public static isValidDate(dateObj): boolean {
     const date = new Date(dateObj.year, dateObj.month - 1, dateObj.day);
     return date instanceof Date && !isNaN(date.getTime());
+  }
+
+  public static getDefaultRouteForLoggedInUser(loginUser: LoginUser) {
+    if (loginUser.role === "admin") {
+      return "/admin";
+    } else if (loginUser.role === "teacher") {
+      return "/teacher";
+    } else if (loginUser.role === "student") {
+      return "/student";
+    }
   }
 }

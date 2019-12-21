@@ -13,7 +13,7 @@
           <div class="form-group col-md-4 offset-md-1">
             <label for="inputState">Subject</label>
             <select class="form-control" formControlName="subject">
-              <option> Select Subject </option>
+              <option>  Select Subject </option>
               <option name="subject" *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subject_title}}
               </option>
             </select>
@@ -54,7 +54,6 @@
             <td>{{ teacherSubject.subject.subject_title }}</td>
             <td>
               <i class="fas fa-edit btn btn-info rounded-circle" placement="left" ngbTooltip="Edit"></i>
-              <i class="fas fa-trash-alt btn btn-danger rounded-circle ml-2" placement="left" ngbTooltip="Delete"></i>
             </td>
           </tr>
         </tbody>

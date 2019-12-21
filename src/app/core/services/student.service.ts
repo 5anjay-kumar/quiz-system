@@ -11,7 +11,7 @@ export class StudentService {
   headers = new HttpHeaders().set("Content-Type", "application/json");
   constructor(private http: HttpClient) {}
   getStudent() {
-    return this.http.get(environment.apiBaseUrl + "/admin/students").pipe(
+    return this.http.get("/admin/students").pipe(
       map((data: any) => {
         return data;
       })
@@ -20,7 +20,7 @@ export class StudentService {
 
   getStudentsByBatch(batchId: string) {
     return this.http
-      .get(environment.apiBaseUrl + "/admin/students/bybatch?batch=" + batchId)
+      .get("/admin/students/bybatch?batch=" + batchId)
       .pipe(
         map((data: any) => {
           // console.log(response);
@@ -30,12 +30,12 @@ export class StudentService {
   }
 
   addStudent(data): Observable<any> {
-    return this.http.post(environment.apiBaseUrl + "/admin/students", data);
+    return this.http.post("/admin/students", data);
   }
 
   updateStudent(data): Observable<any> {
     return this.http
-      .put(environment.apiBaseUrl + "/admin/students/" + data._id, data, {
+      .put("/admin/students/" + data._id, data, {
         headers: this.headers
       })
       .pipe();
@@ -43,7 +43,7 @@ export class StudentService {
 
   deleteStudent(data): Observable<any> {
     return this.http
-      .delete(environment.apiBaseUrl + "/admin/students/" + data._id, {
+      .delete("/admin/students/" + data._id, {
         headers: this.headers
       })
       .pipe();

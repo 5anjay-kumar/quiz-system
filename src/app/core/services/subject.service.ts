@@ -12,7 +12,7 @@ export class SubjectService {
   headers = new HttpHeaders().set("Content-Type", "application/json");
 
   getSubjects() {
-    return this.http.get(environment.apiBaseUrl + "/admin/subjects").pipe(
+    return this.http.get("/admin/subjects").pipe(
       map((data: any) => {
         return data;
       })
@@ -20,12 +20,12 @@ export class SubjectService {
   }
 
   addSubject(data): Observable<any> {
-    return this.http.post(environment.apiBaseUrl + "/admin/subjects", data);
+    return this.http.post("/admin/subjects", data);
   }
 
   updateSubject(data): Observable<any> {
     return this.http
-      .put(environment.apiBaseUrl + "/admin/subjects/" + data._id, data, {
+      .put("/admin/subjects/" + data._id, data, {
         headers: this.headers
       })
       .pipe();

@@ -1,3 +1,5 @@
+import { constants } from './../../app.constants';
+import { EmitterService } from './../../core/services/emitter.service';
 import { ValidatorService } from "./../../core/services/validator.service";
 import { AppService } from "./../../core/services/app.service";
 import { TeacherService } from "./../../core/services/teacher.service";
@@ -21,7 +23,7 @@ export class RegisterTeacherComponent implements OnInit {
   data: any;
   isNewRecord = true;
 
-  constructor(private teacherService: TeacherService, public fb: FormBuilder) {}
+  constructor(private teacherService: TeacherService, public fb: FormBuilder, private emitterService: EmitterService) {}
 
   ngOnInit() {
     this.mainForm();
@@ -60,6 +62,7 @@ export class RegisterTeacherComponent implements OnInit {
       this.teacherService.addTeacher(this.teacherRegisterForm.value).subscribe(
         result => {
           console.log("Teacher Added!");
+          this.emitterService.emit(constants.events.loadTeachersCount);
           this.ngModalRef.close(result);
         },
         error => {

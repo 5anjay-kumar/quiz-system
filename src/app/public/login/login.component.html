@@ -1,33 +1,38 @@
 <div class="container-fluid">
-  <div class="row full-height">
-    <div class="col-sm-6 left-side rounded">
+  <div class="row login-panel">
+    <div class="col-sm-6 left-side">
       <!--  -->
     </div>
     <div class="col-sm-6 text-center">
-      <img src="/assets/img/logo.png" width="20%" class="" alt="">
+      <img src="/assets/img/logo.png" width="20%" class="mt-4" alt="">
       <h1 class="text-secondary text-center mt-3">Buzzy Quiz</h1>
       <p class="text-secondary text-center mt-3">Welcome to Buzzy Quiz! Please login to your account</p>
       <hr class="style13">
       <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-          <form>
+          <form [formGroup]="loginForm">
             <div class="form-group">
-              <input type="email" name="email" class="form-control border border-dark rounded-pill"
-                id="exampleInputEmail1" [(ngModel)]="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="email" name="email" formControlName="email"
+                class="form-control border border-dark rounded-pill" aria-describedby="emailHelp"
+                placeholder="Enter email">
+              <small *ngIf="loginForm.get('email') | isvalid: ['required']" class="error-msg">This field is
+                required!</small>
             </div>
             <div class="form-group">
-              <input type="password" name="password" class="form-control border border-dark rounded-pill"
-                id="exampleInputPassword1" [(ngModel)]="password" placeholder="Password">
+              <input type="password" name="password" formControlName="password"
+                class="form-control border border-dark rounded-pill" placeholder="Password">
+              <small *ngIf="loginForm.get('password') | isvalid: ['required']" class="error-msg">This field is
+                required!</small>
             </div>
 
             <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
               <button type="button" class="btn btn-outline-dark mr-2 rounded-pill" id="dropdownManual" ngbDropdownAnchor
                 (focus)="myDrop.open()">Login As</button>
               <div class="rounded-top" ngbDropdownMenu aria-labelledby="dropdownManual">
-                <button class="btn btn-dark" (click)="loginAdmin()" ngbDropdownItem>Admin</button>
-                <button class="btn btn-dark" (click)="loginTeacher()" ngbDropdownItem>Teacher</button>
-                <button class="btn btn-dark" (click)="loginStudent()" ngbDropdownItem>Student</button>
+                <button class="btn btn-dark" (click)="login('admin')" ngbDropdownItem>Admin</button>
+                <button class="btn btn-dark" (click)="login('teacher')" ngbDropdownItem>Teacher</button>
+                <button class="btn btn-dark" (click)="login('student')" ngbDropdownItem>Student</button>
               </div>
             </div>
           </form>

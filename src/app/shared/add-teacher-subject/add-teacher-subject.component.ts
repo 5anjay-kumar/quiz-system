@@ -1,4 +1,4 @@
-import { PopupService } from './../../core/services/popup.service';
+import { PopupService } from "./../../core/services/popup.service";
 import { AppService } from "./../../core/services/app.service";
 import { Validators, FormBuilder } from "@angular/forms";
 import { FormControl } from "@angular/forms";
@@ -27,7 +27,6 @@ export class AddTeacherSubjectComponent implements OnInit {
     private subjectService: SubjectService,
     private batchService: BatchService,
     private teacherService: TeacherService,
-    private popupService: PopupService,
     public fb: FormBuilder
   ) {}
 
@@ -58,18 +57,18 @@ export class AddTeacherSubjectComponent implements OnInit {
     if (AppService.isNotUndefinedAndNull(this.data)) {
       this.isNewRecord = false;
 
-      this.teacherSubjectForm.setValue({
+      this.teacherSubjectForm.patchValue({
         subject: this.data.subject,
         batch: this.data.batch
       });
     }
   }
 
-  get selectedSubject() {
-    const subjectId = this.teacherSubjectForm.get("subject").value;
-    const subject = this.subjects.find(s => s.id === subjectId);
-    return subject;
-  }
+  // get selectedSubject() {
+  //   const subjectId = this.teacherSubjectForm.get("subject").value;
+  //   const subject = this.subjects.find(s => s.id === subjectId);
+  //   return subject;
+  // }
 
   addSubject() {
     AppService.markAsDirty(this.teacherSubjectForm);
@@ -77,7 +76,7 @@ export class AddTeacherSubjectComponent implements OnInit {
       return;
     }
 
-    if (this.isNewRecord) {
+    if (!this.isNewRecord) {
       const selectedSubject = this.teacherSubjectForm.get("subject").value;
       const selectedBatch = this.teacherSubjectForm.get("batch").value;
 
@@ -87,6 +86,8 @@ export class AddTeacherSubjectComponent implements OnInit {
         batch: selectedBatch
       };
 
+      console.log("Teacher Subject: " + teacherSubject);
+
       this.teacherService
         .addTeacherSubject(teacherSubject)
         .subscribe(result => {
@@ -94,24 +95,23 @@ export class AddTeacherSubjectComponent implements OnInit {
           teacherSubject._id = result._id;
           this.teacherSubjects.push(teacherSubject);
         });
-      }
-    // } else {
-    //   const selectedSubject = this.teacherSubjectForm.get("subject").value;
-    //   const selectedBatch = this.teacherSubjectForm.get("batch").value;
+    } else {
+      const selectedSubject = this.teacherSubjectForm.get("subject").value;
+      const selectedBatch = this.teacherSubjectForm.get("batch").value;
 
-    //   this.data.subject = selectedSubject;
-    //   this.data.batch = selectedBatch;
+      this.data.subject = selectedSubject;
+      this.data.batch = selectedBatch;
 
-    //   this.teacherService.updateTeacherSubject(this.data).subscribe(
-    //     result => {
-    //       console.log("Teacher Subject Updated!");
-    //       this.ngModalRef.close(result);
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     }
-    //   );
-    // }
+      this.teacherService.updateTeacherSubject(this.data).subscribe(
+        result => {
+          console.log("Teacher Subject Updated!");
+          this.ngModalRef.close(result);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   closeWindow() {

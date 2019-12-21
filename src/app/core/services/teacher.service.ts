@@ -12,7 +12,7 @@ export class TeacherService {
   headers = new HttpHeaders().set("Content-Type", "application/json");
 
   getTeachers() {
-    return this.http.get(environment.apiBaseUrl + "/admin/teachers").pipe(
+    return this.http.get("/admin/teachers").pipe(
       map((data: any) => {
         // console.log(response);
         return data;
@@ -21,26 +21,34 @@ export class TeacherService {
   }
 
   addTeacher(data): Observable<any> {
-    return this.http.post(environment.apiBaseUrl + "/admin/teachers", data);
+    return this.http.post("/admin/teachers", data);
   }
 
   addTeacherSubject(data): Observable<any> {
     return this.http.post(
-      environment.apiBaseUrl + "/admin/teachers/subjects",
+      "/admin/teachers/subjects",
       data
     );
   }
 
   getTeacherSubjects(teacherId: string) {
     return this.http.get(
-      environment.apiBaseUrl + "/admin/teachers/" + teacherId + "/subjects"
+      "/admin/teachers/" + teacherId + "/subjects"
     );
   }
 
   // Update employee
   updateTeacher(data): Observable<any> {
     return this.http
-      .put(environment.apiBaseUrl + "/admin/teachers/" + data._id, data, {
+      .put("/admin/teachers/" + data._id, data, {
+        headers: this.headers
+      })
+      .pipe();
+  }
+
+  updateTeacherSubject(data): Observable<any> {
+    return this.http
+      .put("/admin/teachers/" + data._id, data, {
         headers: this.headers
       })
       .pipe();

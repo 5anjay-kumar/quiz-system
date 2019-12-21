@@ -1,5 +1,10 @@
+.login-panel {
+  height: calc(100vh - 119px);
+}
+
 .left-side{
   background-image: linear-gradient(to left, #0e5ed5, #0083e5, #00a1de, #00b9cc, #4ecebc);
+  border-radius: 0px 0px 2px 2px;
 }
 
 .full-height {

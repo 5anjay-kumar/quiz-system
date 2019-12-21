@@ -1,9 +1,15 @@
 footer.sticky-footer {
-  padding: 2rem 0;
-  flex-shrink: 0;
+  padding: 1.25rem 0;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,.15);
+  z-index: 999;
 }
 
 footer.sticky-footer .copyright {
   line-height: 1;
   font-size: .8rem;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
 }

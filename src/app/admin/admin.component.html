@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-        <app-nav></app-nav>
-      <div class="row">
+      <div class="row mt-4">
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div [routerLink]="'teacher'" class="card border-left-primary shadow h-100 py-2 cp">
             <div class="card-body">
               <div class="row align-items-center">
                 <div class="col mr-2">
@@ -20,7 +19,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div [routerLink]="'batch'" class="card border-left-primary shadow h-100 py-2 cp">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -35,7 +34,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div [routerLink]="'subject'" class="card border-left-primary shadow h-100 py-2 cp">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
@@ -50,7 +49,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+          <div [routerLink]="'batch'" class="card border-left-primary shadow h-100 py-2 cp">
             <div class="card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
